@@ -32,14 +32,14 @@ If a feature would violate any of these, stop and flag it rather than shipping i
 
 ## 2. Tech decisions (locked for v1)
 
-- **Platform:** iOS only. **SwiftUI.** (Android is deferred; do not build for it yet.)
-- **Storage:** on-device only. Use SwiftData (or Core Data / Codable-to-disk if simpler) for the Moment records. No network layer, no backend, no analytics SDK that phones home.
+- **Platform (CHANGED — owner's decision, Nov 2026):** **v1 ships as a web app (installable PWA) in `web/`** — plain HTML/CSS/JS, no build step, no framework. The SwiftUI app in `Margin/` is **kept as the reference implementation and the native path for later**, but is **not the v1 target**; don't extend it unless asked. Keep the two behaviourally in sync where they overlap (same copy, same insight rules, same guardrails). Android native is still deferred.
+- **Storage:** on-device only. **Web:** IndexedDB in the browser (`web/js/store.js`) — and the page's CSP sets `connect-src 'none'`, so the browser itself blocks any network call. **iOS (reference):** SwiftData. Either way: no network layer, no backend, no analytics SDK that phones home. Web caveat: Safari may evict storage for sites that aren't installed to the Home Screen, so **export** (Archive footer) matters until optional backup exists.
 - **No account / no auth in v1.** (An *optional backup* login may be added later — see §6.7 — but it is never required and is gated by external logistics.)
 - **Insight engine:** **deterministic, on-device, no LLM on the hot path.** Free text (the Note) is **never read by any model** in v1. (A future v2 may have an LLM *rephrase already-verified facts* and read free text only with explicit consent — not now.)
 - **No scale/infra work.** On-device means ~zero per-user cost. Don't build servers, sync, or accounts speculatively.
-- **Target:** a v1 good enough for **TestFlight** with the team + a few testers. Polished feel, small surface.
+- **Target:** a v1 good enough to hand to the team + a few testers **as a link** (web app, add-to-Home-Screen). Polished feel, small surface.
 
-*Operational note (not a coding task, but real): publishing to TestFlight/App Store needs an Apple Developer account, which is a known external blocker for this team. It runs as a parallel workstream; don't let the build wait on it, but know it gates release and the optional backup login.*
+*Operational note: the web target removes the Apple Developer account blocker for v1 testing. TestFlight/App Store (and Apple-based optional backup login) remain a parallel workstream for the native app. Known web gaps vs native: notifications (§6.8) are unreliable on iOS web and are deferred; storage persistence needs the install-to-Home-Screen nudge.*
 
 ---
 

@@ -1,0 +1,44 @@
+/* Margin design tokens — ported 1:1 from Margin/DesignSystem/Theme.swift */
+@font-face { font-family: "Newsreader"; src: url("../fonts/newsreader-latin-wght-normal.woff2") format("woff2"); font-weight: 200 800; font-display: swap; }
+@font-face { font-family: "Hanken Grotesk"; src: url("../fonts/hanken-grotesk-latin-wght-normal.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: "Spline Sans Mono"; src: url("../fonts/spline-sans-mono-latin-wght-normal.woff2") format("woff2"); font-weight: 300 700; font-display: swap; }
+
+:root {
+  /* palette — wabi-sabi: sumi ink on washi paper. No pure black/white. */
+  --ink: #1b1a16;
+  --indigo: #233650;
+  --paper: #efece4;
+  --paper-deep: #e9e5dc;
+  --stone: #ded9ce;
+  --stone-firm: #c5c0b4;
+  --clay: #b06040;
+  --gold: #a89668;
+
+  /* the same colours as r,g,b so ink marks can take any tone + alpha */
+  --ink-rgb: 27, 26, 22;
+  --indigo-rgb: 35, 54, 80;
+  --clay-rgb: 176, 96, 64;
+  --gold-rgb: 168, 150, 104;
+  --neutral-rgb: 197, 192, 180;
+
+  /* band tones (CLAUDE.md §3, §7) */
+  --activated: var(--clay);
+  --weighted: var(--indigo);
+  --settled: var(--gold);
+  --neutral: var(--stone-firm);
+
+  /* type */
+  --serif: "Newsreader", Georgia, "Iowan Old Style", serif;
+  --sans: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "Spline Sans Mono", ui-monospace, Menlo, monospace;
+
+  /* spacing — Theme.Spacing */
+  --xxs: 4px; --xs: 8px; --sm: 12px; --md: 16px;
+  --lg: 24px; --xl: 32px; --xxl: 48px; --xxxl: 64px;
+
+  /* radius — Theme.Radius */
+  --r-sm: 8px; --r-md: 14px; --r-lg: 22px;
+
+  /* pacing */
+  --fade: 600ms;
+}

@@ -1,0 +1,4 @@
+Newsreader, Hanken Grotesk and Spline Sans Mono are licensed under the
+SIL Open Font License 1.1 (https://openfontlicense.org). Latin subsets,
+packaged via Fontsource (@fontsource-variable/*). Self-hosted on purpose:
+Margin makes no requests to third parties.
