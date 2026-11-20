@@ -6,6 +6,18 @@ import * as view from "./views.js";
 const root = document.getElementById("app");
 let current = null;
 
+// iOS doesn't shrink the layout viewport when the keyboard opens, which can hide
+// the field being typed in. Track the *visual* viewport instead, and bring a
+// focused field into view.
+const vv = window.visualViewport;
+if (vv) {
+  const fit = () => { root.style.height = `${vv.height}px`; window.scrollTo(0, 0); };
+  vv.addEventListener("resize", fit); fit();
+}
+document.addEventListener("focusin", (e) => {
+  if (e.target.matches("input, textarea")) setTimeout(() => e.target.scrollIntoView({ block: "center", behavior: "smooth" }), 320);
+});
+
 function show(screen) {
   const prev = current;
   current = screen;

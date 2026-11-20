@@ -1,5 +1,9 @@
 {
+  "id": "./",
   "name": "Margin",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["lifestyle"],
   "short_name": "Margin",
   "description": "A quiet place for small moments of self-awareness.",
   "start_url": "./",
